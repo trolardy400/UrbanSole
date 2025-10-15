@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>UrbanSole | Calzado Moderno y Urbano</title>
+    <style>
+        /* Variables y Reset Básico */
+        :root {
+            --color-primario: #000;
+            --color-secundario: #fff;
+            --color-acento: #007bff; /* Azul como acento */
+            --color-gris-claro: #f4f4f9;
+            --color-gris-medio: #ccc;
+            --fuente-principal: 'Arial', sans-serif;
+            --padding-base: 20px;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--fuente-principal);
+            line-height: 1.6;
+            background-color: var(--color-gris-claro);
+            color: var(--color-primario);
+        }
+
+        /* Encabezado (Header) */
+        .header {
+            background-color: var(--color-secundario);
+            padding: 10px var(--padding-base);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid var(--color-gris-medio);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+
+        .logo {
+            height: 40px; 
+            margin-right: 10px;
+        }
+
+        .site-title {
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: var(--color-primario);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .nav-menu ul {
+            list-style: none;
+            display: flex;
+        }
+
+        .nav-menu ul li a {
+            text-decoration: none;
+            color: var(--color-primario);
+            margin-left: 20px;
+            font-weight: 600;
+            padding: 5px 10px;
+            transition: color 0.3s, background-color 0.3s;
+            border-radius: 4px;
+        }
+
+        .nav-menu ul li a:hover {
+            color: var(--color-secundario);
+            background-color: var(--color-acento);
+        }
+
+        /* Contenido Principal */
+        .main-content {
+            padding: var(--padding-base);
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            margin-bottom: 40px;
+            text-transform: uppercase;
+            color: var(--color-primario);
+            border-bottom: 3px solid var(--color-acento);
+            display: inline-block;
+            padding-bottom: 5px;
+            width: 100%;
+        }
+
+        /* Cuadrícula de Productos */
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+        }
+
+        .product-card {
+            background-color: var(--color-secundario);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-image-container {
+            width: 100%;
+            height: 250px;
+            overflow: hidden;
+            background-color: var(--color-gris-claro);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-image {
+            width: 100%;
+            height: 100%;
+            object-fit: contain; /* Para que la imagen se vea completa sin cortar */
+            transition: transform 0.5s ease;
+        }
+
+        .product-info {
+            padding: 15px;
+            text-align: center;
+            flex-grow: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .product-name {
+            font-size: 1.25rem;
+            margin-bottom: 8px;
+            color: var(--color-primario);
+            font-weight: 600;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--color-acento);
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .add-to-cart-btn {
+            background-color: var(--color-primario);
+            color: var(--color-secundario);
+            border: none;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            font-weight: 600;
+            transition: background-color 0.3s, transform 0.1s;
+            text-transform: uppercase;
+        }
+
+        .add-to-cart-btn:hover {
+            background-color: var(--color-acento);
+            transform: scale(1.02);
+        }
+
+        /* Pie de Página (Footer) */
+        .footer {
+            background-color: var(--color-primario);
+            color: var(--color-gris-claro);
+            text-align: center;
+            padding: var(--padding-base) 0;
+            margin-top: 50px;
+        }
+
+        .social-links a {
+            color: var(--color-gris-medio);
+            text-decoration: none;
+            margin: 0 10px;
+            font-size: 1.5rem;
+            transition: color 0.3s;
+        }
+
+        .social-links a:hover {
+            color: var(--color-acento);
+        }
+
+        .footer p {
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        /* Media Queries para Responsive Design */
+        @media (max-width: 768px) {
+            .header {
+                flex-direction: column;
+                padding: 15px;
+                text-align: center;
+            }
+
+            .nav-menu {
+                margin-top: 10px;
+                width: 100%;
+            }
+
+            .nav-menu ul {
+                justify-content: space-around;
+                padding: 10px 0;
+                border-top: 1px solid var(--color-gris-medio);
+            }
+
+            .nav-menu ul li a {
+                margin: 0;
+                font-size: 0.9rem;
+            }
+            
+            .site-title {
+                font-size: 1.5rem;
+            }
+
+            .section-title {
+                font-size: 2rem;
+            }
+        }
+        
+        @media (max-width: 480px) {
+            .product-grid {
+                grid-template-columns: 1fr; /* Una columna en pantallas muy pequeñas */
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <header class="header">
+        <div class="logo-container">
+            <img src="https://i.ibb.co/wDp9pNx/image-1760560598787.jpg" alt="UrbanSole Logo" class="logo">
+            <span class="site-title">UrbanSole</span>
+        </div>
+        <nav class="nav-menu">
+            <ul>
+                <li><a href="#inicio">Inicio</a></li>
+                <li><a href="#catalogo">Catálogo</a></li>
+                <li><a href="#contacto">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section id="catalogo">
+            <h2 class="section-title">Nuestros Productos Destacados</h2>
+            <div class="product-grid">
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/LhrfmcPc/b0f3eee6-c555-4bc3-a148-314e13b1dba2.jpg" alt="Zapatilla Casual Flow" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <p class="product-name">Casual Flow Knit</p>
+                            <p class="product-price">$95.00 USD</p>
+                        </div>
+                        <button class="add-to-cart-btn">Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/jPtBWRB9/image-1760561095783.jpg" alt="Bota Alta Urban X" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <p class="product-name">Urban X Boot</p>
+                            <p class="product-price">$120.50 USD</p>
+                        </div>
+                        <button class="add-to-cart-btn">Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/hRBbDJrM/d40f78fd-5c88-488a-ab56-8fea5bea262b.jpg" alt="Deportivo Air Jump" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <p class="product-name">Air Jump Max</p>
+                            <p class="product-price">$79.99 USD</p>
+                        </div>
+                        <button class="add-to-cart-btn">Agregar al carrito</button>
+                    </div>
+                </div>
+
+                <div class="product-card">
+                    <div class="product-image-container">
+                        <img src="https://i.ibb.co/KzXxRCWB/1760561212757.png" alt="Sandalia Summer Vibe" class="product-image">
+                    </div>
+                    <div class="product-info">
+                        <div>
+                            <p class="product-name">Summer Vibe Slide</p>
+                            <p class="product-price">$65.00 USD</p>
+                        </div>
+                        <button class="add-to-cart-btn">Agregar al carrito</button>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="social-links">
+            <a href="#" aria-label="Facebook">F</a>
+            <a href="#" aria-label="Instagram">I</a>
+            <a href="#" aria-label="Twitter">X</a>
+        </div>
+        <p>&copy; 2025 UrbanSole. Todos los derechos reservados.</p>
+    </footer>
+
+</body>
+</html>
